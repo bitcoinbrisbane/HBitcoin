@@ -276,7 +276,7 @@ namespace HBitcoin.FullBlockSpv
 				new NodeRequirement
 				{
 					RequiredServices = NodeServices.Network,
-					MinVersion = ProtocolVersion.SENDHEADERS_VERSION
+					MinVersion = 0 //ProtocolVersion.SENDHEADERS_VERSION
 				});
 			Nodes.NodeConnectionParameters = _connectionParameters;
 
@@ -979,7 +979,7 @@ namespace HBitcoin.FullBlockSpv
 
 				// 9. Build the transaction
 				Debug.WriteLine("Signing transaction...");
-				var builder = new TransactionBuilder();
+				var builder = Network.Main.CreateTransactionBuilder();
 				var tx = builder
 					.AddCoins(coinsToSpend)
 					.AddKeys(signingKeys.ToArray())

@@ -24,8 +24,8 @@ namespace HBitcoin.Tests
 			Assert.Equal(smartMerkleBlock.MerkleBlock.Header.GetHash(), same.MerkleBlock.Header.GetHash());
 
             var block = Network.Main.GetGenesis();
-			var tx = new Transaction(
-				"0100000001997ae2a654ddb2432ea2fece72bc71d3dbd371703a0479592efae21bf6b7d5100100000000ffffffff01e00f9700000000001976a9142a495afa8b8147ec2f01713b18693cb0a85743b288ac00000000");
+			var tx = Transaction.Parse(
+				"0100000001997ae2a654ddb2432ea2fece72bc71d3dbd371703a0479592efae21bf6b7d5100100000000ffffffff01e00f9700000000001976a9142a495afa8b8147ec2f01713b18693cb0a85743b288ac00000000", Network.Main);
 			block.AddTransaction(tx);
 			var tb2 = new SmartMerkleBlock(1, block, tx.GetHash());
 

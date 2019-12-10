@@ -64,7 +64,7 @@ namespace HBitcoin.FullBlockSpv
 			await Task.WhenAll(tasks).ConfigureAwait(false);
 		}
 
-		private IPEndPoint _fastestNodeEndPoint;
+		private EndPoint _fastestNodeEndPoint;
 		private async Task StartDownloadingWithFastestAsync(CancellationToken ctsToken)
 		{
 			while (true)
@@ -183,7 +183,7 @@ namespace HBitcoin.FullBlockSpv
 
 		private void SetFastestNode()
 		{
-			var performances = new Dictionary<IPEndPoint, long>();
+			var performances = new Dictionary<EndPoint, long>();
 			foreach (var node in WalletJob.Nodes.ConnectedNodes)
 			{
 				var speed = (long)(node.Counter.ReadenBytes / node.Counter.Elapsed.TotalSeconds);

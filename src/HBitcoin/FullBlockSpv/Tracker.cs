@@ -345,7 +345,7 @@ namespace HBitcoin.FullBlockSpv
 					foreach (var line in File.ReadAllLines(tt))
 					{
 						var pieces = line.Split(':');
-						ProcessTransaction(new SmartTransaction(new Transaction(pieces[0]), new Height(pieces[1])));
+						//ProcessTransaction(new SmartTransaction(new Transaction(pieces[0]), new Height(pieces[1])));
 					}
 				}
 

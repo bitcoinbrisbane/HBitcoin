@@ -154,7 +154,7 @@ namespace HBitcoin.Tests
 					Task.Delay(1000).Wait();
 				}
 
-				var hasMoneyAddress = BitcoinAddress.Create("mmVZjqZjmLvxc3YFhWqYWoe5anrWVcoJcc");
+				var hasMoneyAddress = BitcoinAddress.Create("mmVZjqZjmLvxc3YFhWqYWoe5anrWVcoJcc", Network.TestNet);
 				Debug.WriteLine($"Checking proper balance on {hasMoneyAddress.ToString()}");
 
 				var record = walletJob.GetSafeHistory().FirstOrDefault();
