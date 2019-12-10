@@ -23,30 +23,30 @@ namespace HBitcoin.Tests
 				var loadedSafe = Safe.Load(password, path);
 
 				var wantedCreation = DateTimeOffset.ParseExact("1998-01-01", "yyyy-MM-dd", CultureInfo.InvariantCulture);
-				var recoverdSafe = Safe.Recover(mnemonic, password, "Wallets/RecoveredTestWallet.json", network, wantedCreation);
+				var recoveredSafe = Safe.Recover(mnemonic, password, "Wallets/RecoveredTestWallet.json", network, wantedCreation);
 
 				var alice = new SafeAccount(3);
 				var bob = new SafeAccount(4);
 				try
 				{
-					Assert.Equal(safe.GetAddress(3, account: alice), recoverdSafe.GetAddress(3, account: alice));
-					Assert.Equal(safe.GetAddress(4, HdPathType.NonHardened, account: alice), recoverdSafe.GetAddress(4, HdPathType.NonHardened, account: alice));
-					Assert.NotEqual(safe.GetAddress(4, HdPathType.Change, account: alice), recoverdSafe.GetAddress(4, HdPathType.NonHardened, account: alice));
-					Assert.NotEqual(safe.GetAddress(3, HdPathType.NonHardened, account: alice), recoverdSafe.GetAddress(4, HdPathType.NonHardened, account: alice));
-					Assert.NotEqual(safe.GetAddress(4, HdPathType.NonHardened, account: alice), recoverdSafe.GetAddress(4, HdPathType.NonHardened, account: bob));
+					Assert.Equal(safe.GetAddress(3, account: alice), recoveredSafe.GetAddress(3, account: alice));
+					Assert.Equal(safe.GetAddress(4, HdPathType.NonHardened, account: alice), recoveredSafe.GetAddress(4, HdPathType.NonHardened, account: alice));
+					Assert.NotEqual(safe.GetAddress(4, HdPathType.Change, account: alice), recoveredSafe.GetAddress(4, HdPathType.NonHardened, account: alice));
+					Assert.NotEqual(safe.GetAddress(3, HdPathType.NonHardened, account: alice), recoveredSafe.GetAddress(4, HdPathType.NonHardened, account: alice));
+					Assert.NotEqual(safe.GetAddress(4, HdPathType.NonHardened, account: alice), recoveredSafe.GetAddress(4, HdPathType.NonHardened, account: bob));
 					Assert.NotEqual(safe.GetAddress(4, account: alice), safe.GetAddress(4));
 
 					Assert.Equal(DateTimeOffset.UtcNow.Date, safe.CreationTime.Date);
 					Assert.True(Safe.EarliestPossibleCreationTime < safe.CreationTime);
-					Assert.True(wantedCreation < recoverdSafe.CreationTime);
+					Assert.True(wantedCreation < recoveredSafe.CreationTime);
 					Assert.Equal(network, safe.Network);
 					Assert.Equal(network, loadedSafe.Network);
-					Assert.Equal(network, recoverdSafe.Network);
+					Assert.Equal(network, recoveredSafe.Network);
 				}
 				finally
 				{
 					safe.Delete();
-					recoverdSafe.Delete();
+					recoveredSafe.Delete();
 				}
 			}
 		}
