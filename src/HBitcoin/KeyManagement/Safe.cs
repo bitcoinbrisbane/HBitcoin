@@ -20,7 +20,8 @@ namespace HBitcoin.KeyManagement
 
 		public BitcoinAddress GetAddress(int index, HdPathType hdPathType = HdPathType.Receive, SafeAccount account  = null)
 		{
-			return GetBitcoinExtKey(index, hdPathType, account).ScriptPubKey.GetDestinationAddress(Network);
+			//return GetBitcoinExtKey(index, hdPathType, account).ScriptPubKey.GetDestinationAddress(Network);
+			return GetBitcoinExtKey(index, hdPathType, account).ScriptPubKey.GetWitScriptAddress(Network);
 		}
 
 		public IList<BitcoinAddress> GetFirstNAddresses(int addressCount, HdPathType hdPathType = HdPathType.Receive, SafeAccount account = null)

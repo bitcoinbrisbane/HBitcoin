@@ -9,6 +9,21 @@ namespace HBitcoin.Tests
 	public class SafeTests
 	{
 		[Fact]
+		public void Test()
+		{
+			Mnemonic mnemonic;
+			const string path = "Wallets/TestWallet.json";
+			const string password = "password";
+
+			//var safe = Safe.Create(out mnemonic, password, path, Network.Main);
+			var safe = Safe.Load(password, path);
+			var loadedSafe = Safe.Load(password, path);
+
+			var address = safe.GetAddress(0, HdPathType.Receive);
+			Console.WriteLine(address.ToString());
+		}
+		
+		[Fact]
 		public void CreationTests()
 		{
 			for (int i = 0; i < 2; i++)
